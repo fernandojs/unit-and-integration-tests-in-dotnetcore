@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <UserSecretsId>aspnet-Simple_CRM.Site-38C8BE3D-1C61-488B-B6C8-80772E282517</UserSecretsId>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <RootNamespace>Simple_CRM.Site</RootNamespace>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Simple CRM.Application\Simple CRM.Application.csproj" />
+    <ProjectReference Include="..\Simple CRM.Infra.Data\Simple CRM.Infra.Data.csproj" />
+    <ProjectReference Include="..\SimpleCRM.Domain\Simple CRM.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

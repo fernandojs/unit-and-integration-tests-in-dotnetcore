@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>Simple_CRM.Application</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Simple CRM.Infra.Data\Simple CRM.Infra.Data.csproj" />
+    <ProjectReference Include="..\SimpleCRM.Domain\Simple CRM.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

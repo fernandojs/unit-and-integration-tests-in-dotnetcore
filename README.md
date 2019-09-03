@@ -1,4 +1,3 @@
-
 Unit Testing and Integration Testing Tools in .NetCore
 =====================
 This project has tools to increase the quality of your unit tests and integration tests in dotnetcore
