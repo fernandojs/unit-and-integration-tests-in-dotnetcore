@@ -27,6 +27,13 @@ namespace Simple_CRM.Application
                 return false;
         }
 
+        public int CalculateTax(int taxA, int taxB)
+        {
+            var totalTax = taxA + (taxB * 2);
+
+            return totalTax;
+        }
+
         public IEnumerable<Business> GetAllActive()
         {
             var businessList = _businessRepository.GetAll();

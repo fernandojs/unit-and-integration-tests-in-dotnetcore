@@ -27,5 +27,6 @@ namespace Simple_CRM.Domain
             ValidationResult = new BusinessValidation().Validate(this);
             return ValidationResult.IsValid;
         }
+        
     }
 }

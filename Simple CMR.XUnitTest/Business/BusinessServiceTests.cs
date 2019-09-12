@@ -1,5 +1,4 @@
-﻿
-using Moq;
+﻿using Moq;
 using Xunit;
 using Simple_CRM.Domain;
 using Simple_CRM.Infra.Data.Repositories.Interfaces;
@@ -18,7 +17,8 @@ namespace Simple_CRM.XUnitTest
         /// Example using Moq to test Add one Business to repository
         /// In this example you can see a simple test using Moq without other dependencies
         /// </summary>
-        [Fact]
+        [Fact(DisplayName = "Business GetBusiness")]
+        [Trait("BusinessService", "Business Service Test")]
         public void BusinessRepository_GetBusiness_ShouldReturnUniqueBusiness()
         {
             // Arrange
@@ -48,7 +48,8 @@ namespace Simple_CRM.XUnitTest
         /// Example using Moq to test Add one Business to repository
         /// In this example you can see a simple test using Moq with FluentAssertions
         /// </summary>
-        [Fact]
+        [Fact(DisplayName = "Business AddBusiness")]
+        [Trait("BusinessService", "Business Service Test")]
         public void BusinessRepository_AddBusiness_ShouldAddAndReturnThisBusiness()
         {
             // Arrange
@@ -80,7 +81,8 @@ namespace Simple_CRM.XUnitTest
         /// Example using Moq to test Add one Business to repository
         /// In this example you can see a simple test using Moq with FluentAssertions and Bogus
         /// </summary>
-        [Fact]
+        [Fact(DisplayName = "Business GetAllBusiness")]
+        [Trait("BusinessService", "Business Service Test")]
         public void BusinessRepository_GetAllBusiness_ShouldReturnAllBusiness()
         {
             // Arrange
@@ -121,6 +123,55 @@ namespace Simple_CRM.XUnitTest
             // Assert FluentAssertions
             businessRet.Should().HaveCount(c => c > 1).And.OnlyHaveUniqueItems();
             businessRet.Should().NotContain(c => !c.Status);
+        }
+
+
+        /// <summary>
+        /// Example using Theory and Inline values to test the CalculateTax
+        /// In this example you can see a simple test using Theory
+        /// </summary>        
+        [Trait("BusinessService", "Business Service Test")]
+        [Theory(DisplayName = "Business CalculateTax")]
+        [InlineData(1, 2, 5)]
+        [InlineData(10, 2, 14)]
+        [InlineData(-2, -2, -6)]
+        [InlineData(0, 0, 0)]
+        public void BusinessRepository_CalculateTax_ShouldReturnCorrectTax(int taxA, int taxB, int expected)
+        {
+            // Arrange 
+            var repository = new Mock<IBusinessRepository>();
+            var businessService = new BusinessService(repository.Object);            
+
+            // Act
+            var calcRet = businessService.CalculateTax(taxA, taxB);
+
+            // Assert FluentAssertions
+            Assert.Equal(calcRet, expected);
+            
+        }
+
+        /// <summary>
+        /// Example using Theory and Inline values to test the CalculateTax
+        /// In this example you can see a simple test using Theory
+        /// </summary>        
+        [Trait("BusinessService", "Business Service Test")]
+        [Theory(DisplayName = "Business CalculateTax Fail")]
+        [InlineData(1, 2, 6)]
+        [InlineData(10, 2, 1)]
+        [InlineData(-2, -2, 6)]
+        [InlineData(0, 0, 1)]
+        public void BusinessRepository_CalculateTax_ShouldReturnDifferentThanExcepted(int taxA, int taxB, int expected)
+        {
+            // Arrange 
+            var repository = new Mock<IBusinessRepository>();
+            var businessService = new BusinessService(repository.Object);
+
+            // Act
+            var calcRet = businessService.CalculateTax(taxA, taxB);
+
+            // Assert FluentAssertions
+            Assert.NotEqual(calcRet, expected);
+
         }
     }
 }

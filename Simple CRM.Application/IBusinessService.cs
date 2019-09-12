@@ -11,6 +11,7 @@ namespace Simple_CRM.Application
         IEnumerable<Business> GetAllActive();
         void Add(Business business);
         void Update(Business business);
-        void Remove(Business business);        
+        void Remove(Business business);
+        int CalculateTax(int taxA, int taxB);
     }
 }
